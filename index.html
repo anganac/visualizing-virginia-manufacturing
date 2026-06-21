@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Long Decline: Manufacturing Job Loss in Southwest Virginia</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-light: #5a5a55;
+    --ink-faint: #9a9a92;
+    --paper: #f7f5f0;
+    --paper-dark: #edeae2;
+    --accent: #8b2222;
+    --accent-light: #b84040;
+    --rule: #c8c4ba;
+    --blue:   #2a6fa8;
+    --teal:   #1a7a5a;
+    --coral:  #c0442a;
+    --amber:  #a06010;
+    --purple: #5a4aaa;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* Header */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.2rem 0 1rem;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .masthead .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+  .masthead h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    max-width: 780px;
+    margin: 0 auto 0.6rem;
+  }
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .masthead .deck {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--ink-light);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Stats band */
+  .stats-band {
+    background: var(--ink);
+    color: #f0ede6;
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .stats-band .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 0 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: #f0ede6;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-num span { color: var(--accent-light); }
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(240,237,230,0.55);
+  }
+
+  /* Body content */
+  .body-text {
+    max-width: 640px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  .body-text p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .body-text p strong {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* Chart section */
+  .chart-section {
+    max-width: 900px;
+    margin: 0 auto 2.5rem;
+    padding: 0 1.5rem;
+  }
+  .chart-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.4rem;
+  }
+  .chart-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .chart-caption {
+    font-size: 13px;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 1rem;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--ink-light);
+  }
+  .legend-swatch {
+    width: 24px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  /* Rule divider */
+  .rule-divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2rem auto;
+    max-width: 900px;
+  }
+
+  /* Second chart — bar */
+  .bar-chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.5rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+  .footer p {
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.6;
+  }
+  .footer strong { color: var(--ink-light); }
+
+  @media (max-width: 600px) {
+    .stats-band .inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 1.5rem; }
+    .stat-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="container">
+    <p class="eyebrow">Visualizing Virginia Numbers &nbsp;·&nbsp; Labor &amp; Place</p>
+    <h1>The <em>long decline</em> of manufacturing in Southwest Virginia</h1>
+    <p class="deck">How two decades of deindustrialization reshaped five Appalachian counties</p>
+  </div>
+</div>
+
+<div class="stats-band">
+  <div class="inner">
+    <div class="stat-item">
+      <div class="stat-num"><span>−</span>48%</div>
+      <div class="stat-label">Total job loss, 2000–2022</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20,700</div>
+      <div class="stat-label">Jobs lost across five counties</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2009</div>
+      <div class="stat-label">Sharpest single-year drop</div>
+    </div>
+  </div>
+</div>
+
+<div class="body-text">
+  <p>
+    Southwest Virginia's manufacturing sector entered the 21st century already under strain. Between 2000 and 2022, the five counties of Wise, Lee, Scott, Dickenson, and Buchanan collectively lost nearly half their manufacturing jobs — a slow hemorrhage punctuated by the sharp shock of the Great Recession. <strong>By 2022, fewer than 22,000 workers remained in manufacturing</strong>, down from over 42,000 at the start of the millennium.
+  </p>
+  <p>
+    The pattern is consistent across counties: a gradual decline through the early 2000s, a steep drop between 2008 and 2010, a partial and short-lived recovery, then a resumed slide through the 2010s. No county was spared. The losses reflect both global forces — import competition, automation — and local vulnerability: a regional economy with few alternative industries to absorb displaced workers.
+  </p>
+</div>
+
+<div class="chart-section">
+  <p class="chart-label">Figure 1</p>
+  <p class="chart-title">Manufacturing employment by county, 2000–2022</p>
+  <p class="chart-caption">Annual manufacturing job counts for five Southwest Virginia counties. All counties show a long-run secular decline with an accelerated drop during the 2008–2010 recession.</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--blue)"></div>Wise County</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--teal)"></div>Lee County</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--coral)"></div>Scott County</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--amber)"></div>Dickenson County</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--purple)"></div>Buchanan County</div>
+  </div>
+
+  <div class="chart-wrapper">
+    <canvas id="lineChart" role="img" aria-label="Line chart of manufacturing employment 2000 to 2022 across five Southwest Virginia counties, all showing significant decline.">All five counties declined from roughly 7,000–11,000 jobs in 2000 to 3,500–5,800 jobs in 2022.</canvas>
+  </div>
+</div>
+
+<hr class="rule-divider" />
+
+<div class="chart-section">
+  <p class="chart-label">Figure 2</p>
+  <p class="chart-title">Percentage job loss by county, 2000 vs. 2022</p>
+  <p class="chart-caption">Each county lost between 40% and 50% of its manufacturing workforce over the two-decade period.</p>
+
+  <div class="bar-chart-wrap">
+    <canvas id="barChart" role="img" aria-label="Horizontal bar chart showing percentage manufacturing job loss by county between 2000 and 2022. Buchanan County lost the most at about 50%, Wise County the least at about 48%.">Buchanan County ~50%, Dickenson ~48%, Scott ~47%, Lee ~49%, Wise ~48% job loss.</canvas>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <p><strong>Data note:</strong> Employment figures are synthetic, generated to illustrate realistic patterns of manufacturing decline in Southwest Virginia. In a full analysis, data would be sourced from the U.S. Census Bureau County Business Patterns (CBP), NAICS sector 31–33.</p>
+    <p style="margin-top:0.5rem;">Visualizing Virginia Numbers &nbsp;·&nbsp; Virginia Tech &nbsp;·&nbsp; 2024</p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const data = [
+  {year:2000,county:"Wise County",jobs:11028},{year:2001,county:"Wise County",jobs:10669},{year:2002,county:"Wise County",jobs:10482},{year:2003,county:"Wise County",jobs:10236},{year:2004,county:"Wise County",jobs:10102},{year:2005,county:"Wise County",jobs:9854},{year:2006,county:"Wise County",jobs:9660},{year:2007,county:"Wise County",jobs:9263},{year:2008,county:"Wise County",jobs:8104},{year:2009,county:"Wise County",jobs:7379},{year:2010,county:"Wise County",jobs:7590},{year:2011,county:"Wise County",jobs:8401},{year:2012,county:"Wise County",jobs:8069},{year:2013,county:"Wise County",jobs:7867},{year:2014,county:"Wise County",jobs:7721},{year:2015,county:"Wise County",jobs:7464},{year:2016,county:"Wise County",jobs:7162},{year:2017,county:"Wise County",jobs:7000},{year:2018,county:"Wise County",jobs:6807},{year:2019,county:"Wise County",jobs:6410},{year:2020,county:"Wise County",jobs:6334},{year:2021,county:"Wise County",jobs:6076},{year:2022,county:"Wise County",jobs:5768},
+  {year:2000,county:"Lee County",jobs:9138},{year:2001,county:"Lee County",jobs:9078},{year:2002,county:"Lee County",jobs:8761},{year:2003,county:"Lee County",jobs:8513},{year:2004,county:"Lee County",jobs:8309},{year:2005,county:"Lee County",jobs:8240},{year:2006,county:"Lee County",jobs:7991},{year:2007,county:"Lee County",jobs:7823},{year:2008,county:"Lee County",jobs:6827},{year:2009,county:"Lee County",jobs:6266},{year:2010,county:"Lee County",jobs:6462},{year:2011,county:"Lee County",jobs:6928},{year:2012,county:"Lee County",jobs:6755},{year:2013,county:"Lee County",jobs:6600},{year:2014,county:"Lee County",jobs:6358},{year:2015,county:"Lee County",jobs:6197},{year:2016,county:"Lee County",jobs:5941},{year:2017,county:"Lee County",jobs:5760},{year:2018,county:"Lee County",jobs:5436},{year:2019,county:"Lee County",jobs:5265},{year:2020,county:"Lee County",jobs:5071},{year:2021,county:"Lee County",jobs:4829},{year:2022,county:"Lee County",jobs:4652},
+  {year:2000,county:"Scott County",jobs:8036},{year:2001,county:"Scott County",jobs:7892},{year:2002,county:"Scott County",jobs:7776},{year:2003,county:"Scott County",jobs:7560},{year:2004,county:"Scott County",jobs:7388},{year:2005,county:"Scott County",jobs:7190},{year:2006,county:"Scott County",jobs:7026},{year:2007,county:"Scott County",jobs:6961},{year:2008,county:"Scott County",jobs:6105},{year:2009,county:"Scott County",jobs:5663},{year:2010,county:"Scott County",jobs:5684},{year:2011,county:"Scott County",jobs:6237},{year:2012,county:"Scott County",jobs:5973},{year:2013,county:"Scott County",jobs:5835},{year:2014,county:"Scott County",jobs:5760},{year:2015,county:"Scott County",jobs:5531},{year:2016,county:"Scott County",jobs:5345},{year:2017,county:"Scott County",jobs:5193},{year:2018,county:"Scott County",jobs:5046},{year:2019,county:"Scott County",jobs:4862},{year:2020,county:"Scott County",jobs:4602},{year:2021,county:"Scott County",jobs:4398},{year:2022,county:"Scott County",jobs:4270},
+  {year:2000,county:"Dickenson County",jobs:7367},{year:2001,county:"Dickenson County",jobs:7196},{year:2002,county:"Dickenson County",jobs:7135},{year:2003,county:"Dickenson County",jobs:6962},{year:2004,county:"Dickenson County",jobs:6720},{year:2005,county:"Dickenson County",jobs:6604},{year:2006,county:"Dickenson County",jobs:6404},{year:2007,county:"Dickenson County",jobs:6313},{year:2008,county:"Dickenson County",jobs:5484},{year:2009,county:"Dickenson County",jobs:5044},{year:2010,county:"Dickenson County",jobs:5127},{year:2011,county:"Dickenson County",jobs:5609},{year:2012,county:"Dickenson County",jobs:5403},{year:2013,county:"Dickenson County",jobs:5285},{year:2014,county:"Dickenson County",jobs:5165},{year:2015,county:"Dickenson County",jobs:4931},{year:2016,county:"Dickenson County",jobs:4743},{year:2017,county:"Dickenson County",jobs:4688},{year:2018,county:"Dickenson County",jobs:4456},{year:2019,county:"Dickenson County",jobs:4234},{year:2020,county:"Dickenson County",jobs:4064},{year:2021,county:"Dickenson County",jobs:3909},{year:2022,county:"Dickenson County",jobs:3818},
+  {year:2000,county:"Buchanan County",jobs:7138},{year:2001,county:"Buchanan County",jobs:6926},{year:2002,county:"Buchanan County",jobs:6716},{year:2003,county:"Buchanan County",jobs:6594},{year:2004,county:"Buchanan County",jobs:6510},{year:2005,county:"Buchanan County",jobs:6286},{year:2006,county:"Buchanan County",jobs:6179},{year:2007,county:"Buchanan County",jobs:6001},{year:2008,county:"Buchanan County",jobs:5162},{year:2009,county:"Buchanan County",jobs:4856},{year:2010,county:"Buchanan County",jobs:4922},{year:2011,county:"Buchanan County",jobs:5305},{year:2012,county:"Buchanan County",jobs:5106},{year:2013,county:"Buchanan County",jobs:4991},{year:2014,county:"Buchanan County",jobs:4759},{year:2015,county:"Buchanan County",jobs:4637},{year:2016,county:"Buchanan County",jobs:4476},{year:2017,county:"Buchanan County",jobs:4377},{year:2018,county:"Buchanan County",jobs:4203},{year:2019,county:"Buchanan County",jobs:3960},{year:2020,county:"Buchanan County",jobs:3827},{year:2021,county:"Buchanan County",jobs:3622},{year:2022,county:"Buchanan County",jobs:3554}
+];
+
+const counties = ["Wise County","Lee County","Scott County","Dickenson County","Buchanan County"];
+const colors = ["#2a6fa8","#1a7a5a","#c0442a","#a06010","#5a4aaa"];
+const years = [...new Set(data.map(d => d.year))];
+
+function getCountyData(county) {
+  return years.map(y => data.find(d => d.county === county && d.year === y).jobs);
+}
+
+new Chart(document.getElementById('lineChart'), {
+  type: 'line',
+  data: {
+    labels: years,
+    datasets: counties.map((c, i) => ({
+      label: c,
+      data: getCountyData(c),
+      borderColor: colors[i],
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      pointRadius: 0,
+      pointHoverRadius: 4,
+      tension: 0.3
+    }))
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} jobs` }
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          autoSkip: false, maxRotation: 0, font: { size: 11 },
+          callback: (v, i) => years[i] % 5 === 0 ? years[i] : ''
+        },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      },
+      y: {
+        min: 2000,
+        ticks: { callback: v => (v/1000).toFixed(0) + 'k', font: { size: 11 } },
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        title: { display: true, text: 'Manufacturing jobs', font: { size: 11 }, color: '#9a9a92' }
+      }
+    }
+  }
+});
+
+const start2000 = counties.map(c => data.find(d => d.county === c && d.year === 2000).jobs);
+const end2022   = counties.map(c => data.find(d => d.county === c && d.year === 2022).jobs);
+const pctLoss   = counties.map((c, i) => Math.round((start2000[i] - end2022[i]) / start2000[i] * 100));
+
+new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: counties.map(c => c.replace(' County', '')),
+    datasets: [{
+      label: '% job loss',
+      data: pctLoss,
+      backgroundColor: colors,
+      borderRadius: 2,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.x}% job loss` } }
+    },
+    scales: {
+      x: {
+        min: 0, max: 60,
+        ticks: { callback: v => v + '%', font: { size: 11 } },
+        grid: { color: 'rgba(0,0,0,0.06)' }
+      },
+      y: { ticks: { font: { size: 12 } }, grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
